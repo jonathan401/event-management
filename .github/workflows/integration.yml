@@ -35,3 +35,6 @@ jobs:
 
       - name: 🏗️ Build dist
         run: npm run build
+
+      - name: 🧪 Run tests
+        run: npm run test
