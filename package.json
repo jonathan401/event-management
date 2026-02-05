@@ -8,7 +8,6 @@
     "test": "jest",
     "build": "tsc",
     "dev": "nodemon --exec tsx src/index.ts",
-    "docker": "docker compose up -d mongodb && docker compose up api",
     "prepare": "husky",
     "lint": "eslint . --max-warnings=0 && tsc --noEmit && tsc",
     "lint:fix": "eslint . --fix",
@@ -34,6 +33,7 @@
     "@testcontainers/postgresql": "^11.11.0",
     "@types/express": "^5.0.4",
     "@types/jest": "^30.0.0",
+    "@types/pg": "^8.16.0",
     "@types/supertest": "^6.0.3",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
@@ -47,6 +47,7 @@
     "jest": "^30.2.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
+    "prisma": "^7.3.0",
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.6",
     "ts-node": "^10.9.2",
@@ -54,12 +55,15 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
     "dotenv": "^17.2.3",
-    "express": "^5.1.0",
+    "express": "^5.2.1",
     "express-validator": "^7.3.0",
     "pg": "^8.18.0",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.28",
+    "pg": "^8.18.0",
     "typescript-eslint": "^8.46.2",
     "winston": "^3.18.3"
   }
