@@ -4,3 +4,8 @@ node_modules/
 build/
 tmp/
 temp/
+dist/
+.env
+logs/
+*.log
+.coverage
