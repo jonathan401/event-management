@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
 import "reflect-metadata";
 import { DataSource, DataSourceOptions } from "typeorm";
 
@@ -15,7 +16,9 @@ const databaseConfig: DataSourceOptions = {
   database: envConfig.POSTGRES_DB,
   synchronize: syncDatabase,
   logging: false,
-  entities: syncDatabase ? ["src/entities/**/*.ts"] : ["dist/entities/**/*.js"],
+  entities: !syncDatabase
+    ? ["dist/entities/**/*.js"]
+    : ["src/entities/**/*.ts"],
   migrations: syncDatabase
     ? ["src/migrations/**/*.ts"]
     : ["dist/migrations/**/*.js"],
