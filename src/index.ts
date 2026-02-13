@@ -13,17 +13,17 @@ export const main = async () => {
     const app = express();
     app.use(express.json());
 
-    app.use((req, res) =>
-      res.status(404).send({
-        message: `This route does not exist: [${req.method}] ${req.url}`,
-      }),
-    );
-
     app.get("/", (_, res) => {
       res.send({
         message: "Welcome to the Event Management API!",
       });
     });
+
+    app.use((req, res) =>
+      res.status(404).send({
+        message: `This route does not exist: [${req.method}] ${req.url}`,
+      }),
+    );
 
     app.listen(PORT, () => {
       console.log(`Server listening on port http://localhost:${PORT}`);
