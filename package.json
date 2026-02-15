@@ -12,7 +12,15 @@
     "lint": "eslint . --max-warnings=0 && tsc --noEmit && tsc",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"{src,test}/**/*.{ts,js,json,md}\"",
-    "format:check": "prettier --check \"{src,test}/**/*.{ts,js,json,md}\""
+    "format:check": "prettier --check \"{src,test}/**/*.{ts,js,json,md}\"",
+    "docker:run-build": "docker-compose up --build",
+    "docker:build": "docker-compose build",
+    "docker:run": "docker compose up -d postgres && docker compose up api",
+    "docker:stop": "docker-compose down",
+    "typeorm": "npm run build && npx typeorm -d dist/data-source.js",
+    "migration:generate": "POSTGRES_HOST=localhost npm run typeorm -- migration:generate",
+    "migration:run": "POSTGRES_HOST=localhost npm run typeorm -- migration:run",
+    "migration:revert": "POSTGRES_HOST=localhost npm run typeorm -- migration:revert"
   },
   "author": "Jonathan",
   "license": "ISC",
@@ -22,7 +30,6 @@
     "@eslint/compat": "^1.4.0",
     "@eslint/eslintrc": "^3.3.1",
     "@eslint/js": "^9.38.0",
-    "@testcontainers/mongodb": "^11.9.0",
     "@types/express": "^5.0.4",
     "@types/jest": "^30.0.0",
     "@types/pg": "^8.16.0",
@@ -52,8 +59,9 @@
     "dotenv": "^17.2.3",
     "express": "^5.2.1",
     "express-validator": "^7.3.0",
-    "mongoose": "^8.19.2",
     "pg": "^8.18.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.28",
     "typescript-eslint": "^8.46.2",
     "winston": "^3.18.3"
   }
