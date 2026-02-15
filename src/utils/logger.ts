@@ -10,7 +10,7 @@ const consoleFormat = format.printf((info: Logform.TransformableInfo) => {
   return `${timestamp} [${level}]: ${message}`;
 });
 
-const logger = createLogger({
+export const logger = createLogger({
   level: process.env.LOG_LEVEL,
   format: format.combine(
     format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
@@ -39,5 +39,3 @@ const logger = createLogger({
   ],
   silent: process.env.NODE_ENV === "test",
 });
-
-export default logger;
