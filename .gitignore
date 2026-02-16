@@ -9,4 +9,3 @@ dist/
 logs/
 *.log
 .coverage
-/generated/prisma
