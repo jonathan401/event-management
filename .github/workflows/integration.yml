@@ -27,6 +27,9 @@ jobs:
       - name: 📚 Install Packages
         run: npm ci
 
+      - name: 🔒 Check for lockfile synchronization
+        run: git diff --exit-code package-lock.json || (echo "Lockfile is out of sync. Please run 'npm i' to update it." && exit 1)
+
       - name: 📝Check for formatting issues
         run: npm run format:check
 
