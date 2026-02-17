@@ -17,7 +17,7 @@ const databaseConfig: DataSourceOptions = {
   subscribers: [],
 };
 
-const testDatabaseConfig: DataSourceOptions = {
+export const testDatabaseConfig: DataSourceOptions = {
   type: "postgres",
   host: "localhost",
   port: 2345,

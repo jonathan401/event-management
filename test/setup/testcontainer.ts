@@ -14,7 +14,7 @@ let container: StartedPostgreSqlContainer | null = null;
 const CONTAINER_NAME = "test-postgres-container";
 const CONTAINER_IMAGE = "postgres:18.1-alpine3.23";
 
-export const setUpPostgresqlContainer = async (
+export const setupPostgresContainer = async (
   config: PostgresConfig,
 ): Promise<StartedPostgreSqlContainer> => {
   const { username, password, port } = config;
