@@ -1,6 +1,7 @@
 import express from "express";
 
 import "dotenv/config";
+import { logger } from "./utils";
 
 export const main = () => {
   const app = express();
@@ -15,8 +16,7 @@ export const main = () => {
 
   const PORT = process.env.PORT ?? 3000;
   app.listen(PORT, () => {
-    // eslint-disable-next-line no-console
-    console.log(`Server listening on port http://localhost:${PORT}`);
+    logger.info(`Server listening on port http://localhost:${PORT}`);
   });
 };
 
