@@ -1,9 +1,9 @@
-import { testDatabaseConfig } from "../../src/data-source";
+import { testDatabaseConfig } from '../../src/data-source';
 
-import { setupPostgresContainer } from "./testcontainer";
+import { setupPostgresContainer } from './testcontainer';
 
-import type { PostgresConfig } from "./testcontainer";
-import type { PostgresConnectionOptions } from "typeorm/driver/postgres/PostgresConnectionOptions";
+import type { PostgresConfig } from './testcontainer';
+import type { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 const postgresConfig = testDatabaseConfig as PostgresConnectionOptions;
 
@@ -11,7 +11,7 @@ const connectionConfig: PostgresConfig = {
   username: postgresConfig.username!,
   password: postgresConfig.password as string,
   port: postgresConfig.port!,
-  database: postgresConfig.database!,
+  database: postgresConfig.database!
 };
 
 export default async () => {

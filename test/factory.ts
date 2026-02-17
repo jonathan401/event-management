@@ -1,13 +1,13 @@
-import { createServer } from "node:http";
+import { createServer } from 'node:http';
 
-import express from "express";
-import supertest from "supertest";
+import express from 'express';
+import supertest from 'supertest';
 
-import AppDataSource from "../src/data-source";
-import { logger } from "../src/utils";
+import AppDataSource from '../src/data-source';
+import { logger } from '../src/utils';
 
-import type { Server } from "node:http";
-import type { DataSource } from "typeorm";
+import type { Server } from 'node:http';
+import type { DataSource } from 'typeorm';
 
 export class TestFactory {
   private _app: express.Application;
@@ -45,7 +45,7 @@ export class TestFactory {
       // Use port 0 for random available port
       this._server = createServer(this._app).listen(0);
     } catch (error) {
-      logger.error("testing error", error);
+      logger.error('testing error', error);
     }
   }
 }

@@ -1,4 +1,4 @@
-import "dotenv/config";
+import 'dotenv/config';
 
 type EnvConfig = {
   PORT: number;
@@ -21,7 +21,7 @@ const getConfig = (): ENV => ({
   POSTGRES_USER: process.env.POSTGRES_USER,
   POSTGRES_PASSWORD: process.env.POSTGRES_PASSWORD,
   POSTGRES_HOST: process.env.POSTGRES_HOST,
-  POSTGRES_DB: process.env.POSTGRES_DB,
+  POSTGRES_DB: process.env.POSTGRES_DB
 });
 
 const getSanitizedConfig = (config: ENV): EnvConfig => {

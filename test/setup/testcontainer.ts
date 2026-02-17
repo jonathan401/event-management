@@ -1,7 +1,4 @@
-import {
-  PostgreSqlContainer,
-  StartedPostgreSqlContainer,
-} from "@testcontainers/postgresql";
+import { PostgreSqlContainer, StartedPostgreSqlContainer } from '@testcontainers/postgresql';
 
 export interface PostgresConfig {
   username: string;
@@ -11,26 +8,26 @@ export interface PostgresConfig {
 }
 
 let container: StartedPostgreSqlContainer | null = null;
-const CONTAINER_NAME = "test-postgres-container";
-const CONTAINER_IMAGE = "postgres:18.1-alpine3.23";
+const CONTAINER_NAME = 'test-postgres-container';
+const CONTAINER_IMAGE = 'postgres:18.1-alpine3.23';
 
 export const setupPostgresContainer = async (
-  config: PostgresConfig,
+  config: PostgresConfig
 ): Promise<StartedPostgreSqlContainer> => {
   const { username, password, port } = config;
 
   container = await new PostgreSqlContainer(CONTAINER_IMAGE)
     .withLabels({
-      "test-container": CONTAINER_NAME,
+      'test-container': CONTAINER_NAME
     })
     .withUsername(username)
     .withPassword(password)
     .withExposedPorts({
       container: 5432,
-      host: port,
+      host: port
     })
     .withEnvironment({
-      NODE_ENV: "test",
+      NODE_ENV: 'test'
     })
     .start();
 
