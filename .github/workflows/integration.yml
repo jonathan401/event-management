@@ -27,6 +27,9 @@ jobs:
       - name: 📚 Install Packages
         run: npm ci
 
+      - name: 🔒 Check for lockfile synchronization
+        run: git diff --exit-code package-lock.json || (echo "Lockfile is out of sync. Please run 'npm i' to update it." && exit 1)
+
       - name: 📝Check for formatting issues
         run: npm run format:check
 
@@ -35,3 +38,15 @@ jobs:
 
       - name: 🏗️ Build dist
         run: npm run build
+
+      - name: 🧪 Run tests
+        env:
+          NODE_ENV: test
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+          POSTGRES_USER: test
+          POSTGRES_PASSWORD: test
+          POSTGRES_DB: test
+          PORT: 3000
+          ACCESS_TOKEN_SECRET: 'test-secret'
+        run: npm test

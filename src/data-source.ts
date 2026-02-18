@@ -1,10 +1,10 @@
-import "reflect-metadata";
-import { DataSource, DataSourceOptions } from "typeorm";
+import 'reflect-metadata';
+import { DataSource, DataSourceOptions } from 'typeorm';
 
-import envConfig from "./config/envConfig";
+import envConfig from './config/envConfig';
 
 const databaseConfig: DataSourceOptions = {
-  type: "postgres",
+  type: 'postgres',
   host: envConfig.POSTGRES_HOST,
   port: envConfig.POSTGRES_PORT,
   username: envConfig.POSTGRES_USER,
@@ -14,21 +14,21 @@ const databaseConfig: DataSourceOptions = {
   logging: false,
   entities: [],
   migrations: [],
-  subscribers: [],
+  subscribers: []
 };
 
-const testDatabaseConfig: DataSourceOptions = {
-  type: "postgres",
-  host: "localhost",
+export const testDatabaseConfig: DataSourceOptions = {
+  type: 'postgres',
+  host: 'localhost',
   port: 2345,
-  username: "test",
-  password: "test",
-  database: "test",
+  username: 'test',
+  password: 'test',
+  database: 'test',
   synchronize: true,
   dropSchema: true,
   entities: [],
   migrations: [],
-  subscribers: [],
+  subscribers: []
 };
 
 const AppDataSource = new DataSource(databaseConfig);
