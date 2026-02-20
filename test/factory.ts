@@ -3,7 +3,7 @@ import { createServer } from 'node:http';
 import express from 'express';
 import supertest from 'supertest';
 
-import AppDataSource from '../src/data-source';
+import AppDataSource from '../src/database/data-source';
 import { logger } from '../src/utils';
 
 import type { Server } from 'node:http';
