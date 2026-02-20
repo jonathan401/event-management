@@ -1,9 +1,11 @@
+import 'reflect-metadata';
 import { createServer } from 'node:http';
 
 import express from 'express';
 import supertest from 'supertest';
 
-import AppDataSource from '../src/database/data-source';
+import { TestDataSource } from '../src/database';
+import UserRoute from '../src/routes/userRoutes';
 import { logger } from '../src/utils';
 
 import type { Server } from 'node:http';
@@ -35,14 +37,14 @@ export class TestFactory {
 
   private async startup(): Promise<void> {
     try {
-      this._connection = AppDataSource.TestDataSource;
+      this._connection = TestDataSource;
       await this._connection.initialize();
       this._app = express();
       this._app.use(express.json());
       this._app.use(express.urlencoded({ extended: true }));
-      // TODO: Uncomment this when routes have been implemented
-      // this._app.use('/', routes);
-      // Use port 0 for random available port
+
+      this._app.use('/api/v1/users', UserRoute);
+
       this._server = createServer(this._app).listen(0);
     } catch (error) {
       logger.error('testing error', error);

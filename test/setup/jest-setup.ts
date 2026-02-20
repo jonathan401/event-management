@@ -1,4 +1,4 @@
-import { testDatabaseConfig } from '../../src/database/data-source';
+import { testDatabaseConfig } from '../../src/database';
 
 import { setupPostgresContainer } from './testcontainer';
 
