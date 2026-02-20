@@ -6,22 +6,10 @@ import type { Request, Response } from 'express';
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, role, favoriteGenres } = req.body;
+    const { name, email, password, role, favouriteGenres } = req.body;
 
     const userRepository = new UserRepository();
 
-    const userExists = await userRepository.findOne({
-      where: {
-        email
-      }
-    });
-
-    if (userExists) {
-      return res.status(HTTP_STATUS.CONFLICT).send({
-        status: 'error',
-        message: 'User already exists'
-      });
-    }
     //   hash password
     const hashedUserPassword = await hashPassword(password);
 
@@ -31,10 +19,11 @@ export const createUser = async (req: Request, res: Response) => {
       password: hashedUserPassword,
       email,
       role,
-      favoriteGenres
+      favouriteGenres
     });
 
     res.status(HTTP_STATUS.CREATED).send({
+      status: 'success',
       message: 'User created successfully',
       data: {
         id: savedUser.id,

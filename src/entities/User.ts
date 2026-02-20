@@ -19,7 +19,7 @@ export class User {
   @Column({ type: 'varchar' })
   name: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', unique: true })
   email: string;
 
   @Column({ type: 'varchar' })
@@ -29,7 +29,7 @@ export class User {
   role: UserRole;
 
   @Column('simple-array', { nullable: true })
-  favoriteGenres?: string[];
+  favouriteGenres?: string[];
 
   @Column({ type: 'varchar', nullable: true })
   location?: string;

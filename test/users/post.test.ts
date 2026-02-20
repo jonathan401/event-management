@@ -1,7 +1,7 @@
-import { UserRole } from '../../../src/entities/User';
-import { HTTP_STATUS } from '../../../src/utils/constants';
-import { TestFactory } from '../../factory';
-import { sampleData, USER_POST_ROUTE, validatorErrorMessage } from '../../testUtills';
+import { UserRole } from '../../src/entities/User';
+import { HTTP_STATUS } from '../../src/utils/constants';
+import { TestFactory } from '../factory';
+import { sampleData, USER_POST_ROUTE, validatorErrorMessage } from '../testUtils';
 
 describe('POST /api/v1/users', () => {
   let factory: TestFactory;
@@ -95,6 +95,32 @@ describe('POST /api/v1/users', () => {
     expect(duplicateRequest.body).toMatchObject({
       message: validatorErrorMessage,
       errors: ['Email already exists']
+    });
+  });
+
+  it('should validate the favouriteGenres field [value type]', async () => {
+    const response = await factory.app.post(USER_POST_ROUTE).send({
+      ...sampleData,
+      favouriteGenres: 'Jazz'
+    });
+
+    expect(response.statusCode).toBe(HTTP_STATUS.BAD_REQUEST);
+    expect(response.body).toMatchObject({
+      message: validatorErrorMessage,
+      errors: ['Genres must be an array']
+    });
+  });
+
+  it('should validate the favouriteGenres field for incorrect array elements', async () => {
+    const response = await factory.app.post(USER_POST_ROUTE).send({
+      ...sampleData,
+      favouriteGenres: ['Jazz', 4]
+    });
+
+    expect(response.statusCode).toBe(HTTP_STATUS.BAD_REQUEST);
+    expect(response.body).toMatchObject({
+      message: validatorErrorMessage,
+      errors: ['Each genre provided must be a string']
     });
   });
 });
