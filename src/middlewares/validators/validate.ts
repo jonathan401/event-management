@@ -6,7 +6,7 @@ export const validate = (req: Request, res: Response, next: NextFunction) => {
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
-    res.status(400).send({
+    return res.status(400).send({
       status: 'error',
       message: 'Validation error',
       errors: errors.array().map((error) => error.msg)
