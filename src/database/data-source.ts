@@ -1,7 +1,7 @@
-import 'reflect-metadata';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
-import envConfig from './config/envConfig';
+import envConfig from '../config/envConfig';
+import { User } from '../entities/User';
 
 const databaseConfig: DataSourceOptions = {
   type: 'postgres',
@@ -12,7 +12,7 @@ const databaseConfig: DataSourceOptions = {
   database: envConfig.POSTGRES_DB,
   synchronize: true,
   logging: false,
-  entities: [],
+  entities: [User],
   migrations: [],
   subscribers: []
 };
@@ -26,12 +26,10 @@ export const testDatabaseConfig: DataSourceOptions = {
   database: 'test',
   synchronize: true,
   dropSchema: true,
-  entities: [],
+  entities: [User],
   migrations: [],
   subscribers: []
 };
 
-const AppDataSource = new DataSource(databaseConfig);
-const TestDataSource = new DataSource(testDatabaseConfig);
-
-export default { AppDataSource, TestDataSource };
+export const AppDataSource = new DataSource(databaseConfig);
+export const TestDataSource = new DataSource(testDatabaseConfig);
